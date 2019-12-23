@@ -136,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         boolean match1 = Pattern.matches(pattern1, username);
         boolean match2 = Pattern.matches(pattern2, username);
         if (!match1) {
-            Toast.makeText(RegisterActivity.this, "\n用户名需要以英文字母开头，由英文字母数字和_组成", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "用户名需要以英文字母开头，由英文字母数字和_组成", Toast.LENGTH_LONG).show();
             return false;
         }
         if (!match2) {
