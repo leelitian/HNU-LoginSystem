@@ -26,10 +26,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText text_password;                            //密码编辑
     private Button button_register;                   //注册按钮
     private Button button_login;                      //登录按钮
+
     private CheckBox checkbox_remember_username;                  //记住用户名
     private CheckBox checkbox_remember_password;                  //记住用户名
+
     private SharedPreferences saved_information;
+
     private String login_url = "http://111.229.125.198:8080/ParkingSystem/LoginServlet";
+    private String list_url = "http://111.229.125.198:8080/ParkingSystem/ListServlet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         checkbox_remember_username.setOnClickListener(this);
 
         saved_information = getSharedPreferences("user", Context.MODE_PRIVATE);
+
         String name = saved_information.getString("username", "");
         String pass = saved_information.getString("password", "");
         boolean remember_username = saved_information.getBoolean("remember_username", false);
@@ -114,6 +119,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         editor.putBoolean("login_state", true);
                         editor.apply();
 
+                        list();
                         startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
                         finish();
                         Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
@@ -149,5 +155,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public void list() {
+        String username = saved_information.getString("username", "");
+
+        RequestParams params = new RequestParams(); // 绑定参数
+        params.put("username", username);
+        params.put("client", "Android");
+
+        HttpUtil.get(list_url, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    SharedPreferences.Editor editor = saved_information.edit();
+                    editor.putString("old_name", response.getString("name"));
+                    editor.putString("old_age", response.getString("age"));
+                    editor.putString("old_teleno", response.getString("teleno"));
+                    editor.apply();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(LoginActivity.this, "请检查您的网络连接...", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

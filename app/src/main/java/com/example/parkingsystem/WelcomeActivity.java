@@ -20,9 +20,13 @@ import cz.msebera.android.httpclient.Header;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button botton_cancel;
+    private Button button_cancel;
+    private Button button_edit;
+    private Button button_modify;
     private TextView text_welcome;
+
     private SharedPreferences saved_information;
+
     private String login_url = "http://111.229.125.198:8080/ParkingSystem/LoginServlet";
 
     @Override
@@ -30,12 +34,19 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        saved_information = getSharedPreferences("user", Context.MODE_PRIVATE);
+
         text_welcome = (TextView) findViewById(R.id.welcome_text);
-        botton_cancel = (Button) findViewById(R.id.welcome_btn_return);
-        botton_cancel.setOnClickListener(this);
+        button_cancel = (Button) findViewById(R.id.welcome_btn_return);
+        button_edit = (Button) findViewById(R.id.welcome_btn_edit);
+        button_modify = (Button) findViewById(R.id.welcome_btn_modify);
+
+        button_cancel.setOnClickListener(this);
+        button_modify.setOnClickListener(this);
+        button_edit.setOnClickListener(this);
 
         saved_information = getSharedPreferences("user", Context.MODE_PRIVATE);
-        String username = saved_information.getString("username", "NULL");
+        String username = saved_information.getString("username", "");
         text_welcome.setText("欢迎你，亲爱的" + username);
 
         login_check();
@@ -53,6 +64,9 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(WelcomeActivity.this, "退出成功！", Toast.LENGTH_SHORT).show();
 
                 finish();
+                break;
+            case R.id.welcome_btn_edit:
+                startActivity(new Intent(this, EditActivity.class));
                 break;
         }
     }
@@ -91,4 +105,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
     }
+
+
 }

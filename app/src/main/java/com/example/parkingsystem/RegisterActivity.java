@@ -38,14 +38,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        text_username = (EditText) findViewById(R.id.register_edit_username);
-        text_name = (EditText) findViewById(R.id.register_edit_name);
-        text_age = (EditText) findViewById(R.id.register_edit_age);
-        text_teleno = (EditText) findViewById(R.id.register_edit_teleno);
-        text_pass = (EditText) findViewById(R.id.register_edit_pass);
-        text_pass2 = (EditText) findViewById(R.id.register_edit_pass_confirm);
-        button_ok = (Button) findViewById(R.id.register_btn_sure);
-        button_cancel = (Button) findViewById(R.id.register_btn_cancel);
+        text_username = findViewById(R.id.register_edit_username);
+        text_name = findViewById(R.id.register_edit_name);
+        text_age = findViewById(R.id.register_edit_age);
+        text_teleno = findViewById(R.id.register_edit_teleno);
+        text_pass = findViewById(R.id.register_edit_pass);
+        text_pass2 = findViewById(R.id.register_edit_pass_confirm);
+        button_ok = findViewById(R.id.register_btn_sure);
+        button_cancel = findViewById(R.id.register_btn_cancel);
         saved_information = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         button_ok.setOnClickListener(this);
