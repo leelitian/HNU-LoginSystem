@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button button_ok;
     private Button button_cancel;
     private SharedPreferences saved_information;
-    private String register_url = "http://111.229.125.198:8080/ParkingSystem/RegisterServlet";
+    private String register_url = "http://111.229.125.198/RegisterServlet";
 //    private String list_url = "http://111.229.125.198:8080/ParkingSystem/ListServlet";
 
     @Override
