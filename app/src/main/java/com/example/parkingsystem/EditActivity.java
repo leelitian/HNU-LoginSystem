@@ -108,7 +108,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putString("old_teleno", teleno);
                         editor.apply();
                         Toast.makeText(EditActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(EditActivity.this, WelcomeActivity.class));
+//                        startActivity(new Intent(EditActivity.this, WelcomeActivity.class));
                         finish();
                     } else
                         Toast.makeText(EditActivity.this, "修改信息失败..", Toast.LENGTH_SHORT).show();
@@ -145,7 +145,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         //检查电话
-        String pattern5 = "(?:^(?:\\+86)?1(?:3[4-9]|4[7]|5[0-27-9]|7[8]|8[2-478])\\d{8}$)|(?:^(?:\\+86)?1705\\d{7}$)";
+        String pattern5 = "^((13[0-9])|(14[4-9])|(15[^4])|(16[6-7])|(17[^9])|(18[0-9])|(19[1|8|9]))\\d{8}$";
         boolean match5 = Pattern.matches(pattern5, teleno);
         if (!teleno.isEmpty() && !match5) {
             Toast.makeText(EditActivity.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();

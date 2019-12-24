@@ -75,7 +75,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
                     text_old.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     text_repeat.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
-
+                break;
         }
     }
 

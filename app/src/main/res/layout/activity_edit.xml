@@ -63,7 +63,7 @@
             android:id="@+id/edit_text_teleno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入正确的号码（非必填项）"
+            android:hint="用于找回密码，请谨慎修改！"
             android:inputType="text" />
     </LinearLayout>
 

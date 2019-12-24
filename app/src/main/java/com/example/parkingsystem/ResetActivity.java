@@ -167,7 +167,7 @@ public class ResetActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
         if (teleno.isEmpty()) {
-            Toast.makeText(ResetActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ResetActivity.this, "请输入手机号码", Toast.LENGTH_SHORT).show();
             return;
         }
 

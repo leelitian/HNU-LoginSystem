@@ -32,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button button_cancel;
     private SharedPreferences saved_information;
     private String register_url = "http://111.229.125.198:8080/ParkingSystem/RegisterServlet";
+//    private String list_url = "http://111.229.125.198:8080/ParkingSystem/ListServlet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.register_btn_cancel:
                 //切换Register Activity至Login Activity
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 finish();
                 break;
         }
@@ -72,9 +74,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         final String username = text_username.getText().toString();
         final String password = text_pass.getText().toString();
-        String name = text_name.getText().toString();
-        String age = text_age.getText().toString();
-        String teleno = text_teleno.getText().toString();
+        final String name = text_name.getText().toString();
+        final String age = text_age.getText().toString();
+        final String teleno = text_teleno.getText().toString();
 
         RequestParams params = new RequestParams(); // 绑定参数
         params.put("username", username);
@@ -96,6 +98,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         editor.putBoolean("remember_username", true);
                         editor.putBoolean("remember_password", false);
                         editor.putBoolean("login_state", true);
+                        editor.putString("old_name", name);
+                        editor.putString("old_age", age);
+                        editor.putString("old_teleno", teleno);
                         editor.apply();
 
                         Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
@@ -158,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         //检查电话
-        String pattern5 = "(?:^(?:\\+86)?1(?:3[4-9]|4[7]|5[0-27-9]|7[8]|8[2-478])\\d{8}$)|(?:^(?:\\+86)?1705\\d{7}$)";
+        String pattern5 = "^((13[0-9])|(14[4-9])|(15[^4])|(16[6-7])|(17[^9])|(18[0-9])|(19[1|8|9]))\\d{8}$";
         boolean match5 = Pattern.matches(pattern5, teleno);
         if (!teleno.isEmpty() && !match5) {
             Toast.makeText(RegisterActivity.this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
@@ -190,4 +195,32 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onDestroy() {
         super.onDestroy();
     }
+
+//    public void list() {
+//        String username = saved_information.getString("username", "");
+//
+//        RequestParams params = new RequestParams(); // 绑定参数
+//        params.put("username", username);
+//        params.put("client", "Android");
+//
+//        HttpUtil.get(list_url, params, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                try {
+//                    SharedPreferences.Editor editor = saved_information.edit();
+//                    editor.putString("old_name", response.getString("name"));
+//                    editor.putString("old_age", response.getString("age"));
+//                    editor.putString("old_teleno", response.getString("teleno"));
+//                    editor.apply();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                Toast.makeText(RegisterActivity.this, "请检查您的网络连接...", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 }
