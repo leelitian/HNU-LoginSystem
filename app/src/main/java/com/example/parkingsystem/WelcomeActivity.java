@@ -57,16 +57,19 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()) {
             case R.id.welcome_btn_return:
                 startActivity(new Intent(this, LoginActivity.class));
-
                 SharedPreferences.Editor editor = saved_information.edit();
                 editor.putBoolean("login_state", false);
                 editor.apply();
                 Toast.makeText(WelcomeActivity.this, "退出成功！", Toast.LENGTH_SHORT).show();
-
                 finish();
                 break;
+
             case R.id.welcome_btn_edit:
                 startActivity(new Intent(this, EditActivity.class));
+                break;
+
+            case R.id.welcome_btn_modify:
+                startActivity(new Intent(this, ModifyActivity.class));
                 break;
         }
     }
@@ -89,6 +92,9 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                     if (!response.getBoolean("state")) {
                         Toast.makeText(WelcomeActivity.this, "密码错误，请重新登录", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                        SharedPreferences.Editor editor = saved_information.edit();
+                        editor.putBoolean("remember_password", false);
+                        editor.apply();
                         finish();
                     }
                 } catch (JSONException e) {

@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ResetActivity"
+            android:label="重置密码" />
+        <activity
+            android:name=".ModifyActivity"
+            android:label="修改密码" />
+        <activity
             android:name=".EditActivity"
             android:label="编辑资料" />
         <activity
@@ -34,7 +40,7 @@
             android:label="用户注册" />
         <activity
             android:name=".LoginActivity"
-            android:label="登录系统" />
+            android:label="登录账号" />
     </application>
 
 </manifest>

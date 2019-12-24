@@ -68,8 +68,6 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 edit();
                 break;
             case R.id.edit_button_cancel:
-                //切换Register Activity至Login Activity
-                startActivity(new Intent(this, WelcomeActivity.class));
                 finish();
                 break;
         }

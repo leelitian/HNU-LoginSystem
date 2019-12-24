@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText text_password;                            //密码编辑
     private Button button_register;                   //注册按钮
     private Button button_login;                      //登录按钮
+    private Button button_forget;
 
     private CheckBox checkbox_remember_username;                  //记住用户名
     private CheckBox checkbox_remember_password;                  //记住用户名
@@ -42,16 +43,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         //通过id找到相应的控件
-        text_username = (EditText) findViewById(R.id.login_edit_account);
-        text_password = (EditText) findViewById(R.id.login_edit_pwd);
-        button_register = (Button) findViewById(R.id.login_btn_register);
-        button_login = (Button) findViewById(R.id.login_btn_login);
-        checkbox_remember_username = (CheckBox) findViewById(R.id.login_remember_username);
-        checkbox_remember_password = (CheckBox) findViewById(R.id.login_remember_password);
+        text_username = findViewById(R.id.login_edit_account);
+        text_password = findViewById(R.id.login_edit_pwd);
+        button_register = findViewById(R.id.login_btn_register);
+        button_login = findViewById(R.id.login_btn_login);
+        button_forget = findViewById(R.id.login_btn_forget);
+        checkbox_remember_username = findViewById(R.id.login_remember_username);
+        checkbox_remember_password = findViewById(R.id.login_remember_password);
 
         //采用OnClickListener方法设置不同按钮按下之后的监听事件
         button_login.setOnClickListener(this);
         button_register.setOnClickListener(this);
+        button_forget.setOnClickListener(this);
         checkbox_remember_password.setOnClickListener(this);
         checkbox_remember_username.setOnClickListener(this);
 
@@ -86,9 +89,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.login_remember_password:
                 if (checkbox_remember_password.isChecked())
                     checkbox_remember_username.setChecked(true);
+                break;
             case R.id.login_remember_username:
                 if (!checkbox_remember_username.isChecked())
                     checkbox_remember_password.setChecked(false);
+                break;
+            case R.id.login_btn_forget:
+                startActivity(new Intent(this, ResetActivity.class));
+                break;
         }
     }
 

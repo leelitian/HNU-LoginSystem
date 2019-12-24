@@ -61,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.register_btn_cancel:
                 //切换Register Activity至Login Activity
-                startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
         }
