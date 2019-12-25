@@ -34,7 +34,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     private String old_age;
     private String old_teleno;
 
-    private String edit_url = "http://111.229.125.198/EditServlet";
+    private String edit_url = "http://111.229.63.204:8080/EditServlet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
