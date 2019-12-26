@@ -34,8 +34,8 @@ public class ResetActivity extends AppCompatActivity implements View.OnClickList
     private Button button_sure;                       //确定按钮
     private Button button_cancel;                     //取消按钮
     private CheckBox checkBox_display;
-    private String send_url = "http://111.229.63.204:8080/SendCodeServlet";
-    private String modify_url = "http://111.229.63.204:8080/CheckCodeServlet";
+    private String send_url = "http://111.229.63.204/SendCodeServlet";
+    private String modify_url = "http://111.229.63.204/CheckCodeServlet";
     private SharedPreferences saved_information;
 
     @Override

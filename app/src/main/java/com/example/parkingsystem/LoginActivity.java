@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private SharedPreferences saved_information;
 
-    private String login_url = "http://111.229.63.204:8080/LoginServlet";
-    private String list_url = "http://111.229.63.204:8080/ListServlet";
+    private String login_url = "http://111.229.63.204/LoginServlet";
+    private String list_url = "http://111.229.63.204/ListServlet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

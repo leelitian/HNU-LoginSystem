@@ -34,7 +34,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     private String old_age;
     private String old_teleno;
 
-    private String edit_url = "http://111.229.63.204:8080/EditServlet";
+    private String edit_url = "http://111.229.63.204/EditServlet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +133,11 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         //检查姓名
         if (name.isEmpty()) {
             Toast.makeText(EditActivity.this, "姓名为空", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (name.length() > 15) {
+            Toast.makeText(EditActivity.this, "姓名太长了哦", Toast.LENGTH_LONG).show();
             return false;
         }
 

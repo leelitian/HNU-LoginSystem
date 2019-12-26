@@ -154,6 +154,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return false;
         }
 
+        if (name.length() > 15) {
+            Toast.makeText(RegisterActivity.this, "姓名太长了哦", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
         //检查age
         String pattern4 = "^([1-9]\\d|\\d)$";
         boolean match4 = Pattern.matches(pattern4, age);
