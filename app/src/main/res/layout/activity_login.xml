@@ -58,7 +58,7 @@
             android:textColor="#ffffff"
             android:textSize="20dp" />
 
-        <Button
+            <Button
             android:id="@+id/login_btn_forget"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
